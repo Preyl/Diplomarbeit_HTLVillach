@@ -36,7 +36,7 @@
                 int i = 0;
                 foreach (var feld in item.MeineFelder)
                 {
-                    @Html.RouteLink(@feld.Name, new { action = "Edit", controller = "Felder", id = Model.Id })
+                   @Html.RouteLink(@feld.Name, new { action = "Edit", controller = "Felder", id = item.Id })
                     i++;
                 }
                 @: @i <br />

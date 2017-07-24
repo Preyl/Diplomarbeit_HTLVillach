@@ -5,7 +5,7 @@
 }
 
 <h2>Details</h2>
-
+<p>@Html.ActionLink("Create New Feld", "Create")</p>
 <div>
     <h4>Datentyp</h4>
     <hr />
@@ -52,6 +52,8 @@
                     @foreach (var feld in Model.MeineFelder)
                     {
                         @:  @feld.Name <br />
+                       
+
                     } 
                    
                 </td>
@@ -59,12 +61,14 @@
                     @foreach (var feld in Model.MeineFelder)
                     {
                         @:  @feld.Sensibel <br />
+                       
                     }
                 </td>
                 <td>
                     @foreach (var feld in Model.MeineFelder)
                     {
-                        @:  @feld.PK <br />
+                        @:  @feld.PK 
+                      <br />
                     }
                 </td>
 
@@ -73,12 +77,16 @@
                     {
 
                     @:
-                        @anwendung.Name<br />
+                        @anwendung.Name
+                       <br />
 
                     }
 
                 </td>
-                
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) <br/>
+                </td>
+               
             </tr>
                    
 </table>
@@ -87,6 +95,6 @@
   
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+   
     @Html.ActionLink("Back to List", "Index")
 </p>
