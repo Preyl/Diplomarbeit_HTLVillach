@@ -7,40 +7,22 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Anwendung</h4>
+    <h4>@Html.DisplayFor(model => model.Name)</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Beschreibung)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Beschreibung)
-        </dd>
-
-        <dt>
-            Datentypen
-        </dt>
-        <dd>
-            @{
-                foreach (var datentyp in Model.MeineDatentypen)
-                {
-                    @:  @datentyp.Name
-                    <br />
-                }
+        @Html.DisplayFor(model => model.Beschreibung) <br />
+        @{
+            foreach (var datentyp in Model.MeineDatentypen)
+            {       
+                    @Html.RouteLink(@datentyp.Name, new { action = "Edit", controller = "Datentypen", id = Model.Id})<br />
+                
+                    foreach (var feld in datentyp.MeineFelder)
+                    {
+                        @:  @feld.Name <br />
+                    }
             }
-        </dd>
-    </dl>
+        }
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Zurück", "Index")
 </p>
