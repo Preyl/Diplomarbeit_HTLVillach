@@ -12,7 +12,7 @@ namespace DataDictionary.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Feld()
         {
-            Datentyp = new HashSet<Datentyp>();
+            MeineDatentypen = new HashSet<Datentyp>();
         }
 
         public int Id { get; set; }
@@ -26,6 +26,6 @@ namespace DataDictionary.Models
         public bool PK { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Datentyp> Datentyp { get; set; }
+        public virtual ICollection<Datentyp> MeineDatentypen { get; set; }
     }
 }

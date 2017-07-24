@@ -41,7 +41,7 @@ namespace DataDictionary.Models
 
             modelBuilder.Entity<Datentyp>()
                 .HasMany(e => e.MeineFelder)
-                .WithMany(e => e.Datentyp)
+                .WithMany(e => e.MeineDatentypen)
                 .Map(m => m.ToTable("Datentyp_Feld").MapLeftKey("DatentypId").MapRightKey("FeldId"));
 
             modelBuilder.Entity<Feld>()

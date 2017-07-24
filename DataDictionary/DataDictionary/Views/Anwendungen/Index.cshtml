@@ -15,10 +15,10 @@
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Beschreibung)
+            Datentypen
         </th>
         <th>
-            Datentypen
+            Felder
         </th>
         <th></th>
     </tr>
@@ -29,20 +29,30 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Beschreibung)
-        </td>
-        <td>
             @{
+                int i = 0;
                 foreach (var datentyp in item.MeineDatentypen)
                 {
-                    @:  @datentyp.Name <br />
+                    i++;
                 }
+                @: @i <br />
             }
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @{
+                i = 0;
+                foreach (var datentyp in item.MeineDatentypen)
+                {
+                    foreach (var feld in datentyp.MeineFelder)
+                    {
+                        i++;
+                    }
+                }
+                @: @i <br />
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id=item.Id })
         </td>
     </tr>
 }

@@ -68,7 +68,7 @@ namespace DataDictionary.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Anwendung anwendung = db.Anwendung
-              .Include(a => a.MeineDatentypen)
+              .Include(a => a.MeineDatentypen)   
               .Where(i => i.Id == id)
               .Single();
 
@@ -85,7 +85,7 @@ namespace DataDictionary.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int? id, string[] selectedDatentypen)
+        public ActionResult Edit(int? id, string[] selectedDatentypen, string[] selectedFelder)
         {
             if (id == null)
             {
@@ -101,7 +101,7 @@ namespace DataDictionary.Controllers
             {
                 try
                 {
-                    UpdateAnwendungDatentyp(selectedDatentypen, anwendungToUpdate);                
+                    UpdateAnwendungDatentyp(selectedDatentypen, anwendungToUpdate);             
                     db.Entry(anwendungToUpdate).State = EntityState.Modified;
                     db.SaveChanges();
 
@@ -169,6 +169,7 @@ namespace DataDictionary.Controllers
             }
             ViewBag.Datentyp = viewModel;
         }
+        
         private void UpdateAnwendungDatentyp(string[] selectedDatentypen, Anwendung anwendungToUpdate)
         {
             if (selectedDatentypen == null)
