@@ -25,33 +25,66 @@
         <dd>
             @Html.DisplayFor(model => model.Beschreibung)
         </dd>
-      
-        <dt>
-            Anwendungen
-        </dt>
-        <dd>
-            @{
-                foreach (var anwendung in Model.MeineAnwendungen)
-                {
-                    @:  @anwendung.Name
-                    <br />
-                }
-            }
-        </dd>
-        <dt>
-            Felder
-        </dt>
-        <dd>
-            @{
-                foreach (var feld in Model.MeineFelder)
-                {
-                    @:  @feld.Name
-                    <br />
-                }
-            }
-        </dd>
+        </dl>
 
-    </dl>
+       
+    <text> Felder</text>
+        <table class="table">
+            
+         
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Sensibel
+                </th>
+                <th>
+                    PK
+                </th>
+                <th>
+                    Anwendung
+                </th>
+            </tr>
+            <tr>
+                <td>
+                  
+                    @foreach (var feld in Model.MeineFelder)
+                    {
+                        @:  @feld.Name <br />
+                    } 
+                   
+                </td>
+                <td>
+                    @foreach (var feld in Model.MeineFelder)
+                    {
+                        @:  @feld.Sensibel <br />
+                    }
+                </td>
+                <td>
+                    @foreach (var feld in Model.MeineFelder)
+                    {
+                        @:  @feld.PK <br />
+                    }
+                </td>
+
+                <td>
+                    @foreach (var anwendung in Model.MeineAnwendungen)
+                    {
+
+                    @:
+                        @anwendung.Name<br />
+
+                    }
+
+                </td>
+                
+            </tr>
+                   
+</table>
+
+
+  
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
