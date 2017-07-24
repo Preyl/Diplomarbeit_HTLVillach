@@ -5,33 +5,15 @@
 }
 
 <h2>Details</h2>
-<p>@Html.ActionLink("Create New Feld", "Create")</p>
 <div>
-    <h4>Datentyp</h4>
+    <h4>@Html.DisplayFor(model => model.Name)</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Beschreibung)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Beschreibung)
-        </dd>
-        </dl>
-
-       
-    <text> Felder</text>
-        <table class="table">
-            
-         
+      <p>@Html.DisplayFor(model => model.Beschreibung)</p>
+      @foreach (var item in Model.MeineAnwendungen)
+      {
+          @Html.RouteLink(item.Name, new { action = "Details", controller = "Anwendungen", id = item.Id}) <br >
+      }
+        <table class="table">        
             <tr>
                 <th>
                     Name
@@ -46,62 +28,50 @@
                     Anwendung
                 </th>
             </tr>
-            <tr>
+            @foreach (var item in Model.MeineFelder) {
+                <tr>
+                    <td>
+                         @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sensibel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PK)
+                    </td>
+                    <td>
+                    @{
+                        int i = 0;
+                        var alleAnwendungen = new List<string>();
+                        foreach (var datentyp in item.MeineDatentypen)
+                        {
+                            foreach (var anwendung in datentyp.MeineAnwendungen)
+                            {
+                                if (!alleAnwendungen.Contains(anwendung.Name))
+                                {
+                                    alleAnwendungen.Add(anwendung.Name);
+                                }
 
-                <td>
-                  
-                    @foreach (var feld in Model.MeineFelder)
-                    {
-                        @:  @feld.Name <br />
+                            }
+                        }
+                        foreach (var anwendung in alleAnwendungen)
+                        {
+                            @Html.DisplayText(anwendung.ToString())
+                            i++;
+                        }
+                        @: @i <br />
+                        }
+                    </td>
+                    <td>
+                        @Html.RouteLink("Bearbeiten", new { action = "Edit", controller = "Felder", id = item.Id })<br />
+                    </td>
 
-
-                    } 
-                   
-                </td>
-                <td>
-                    @foreach (var feld in Model.MeineFelder)
-                    {
-                        @:  @feld.Sensibel <br />
-
-                    }
-                </td>
-                <td>
-                    @foreach (var feld in Model.MeineFelder)
-                    {
-                        @:  @feld.PK 
-                      <br />
-                    }
-                </td>
-
-                <td>
-                    @foreach (var anwendung in Model.MeineAnwendungen)
-                    {
-
-                    @:
-                        @anwendung.Name
-                       <br />
-
-                    }
-
-                </td>
-                <td>
-                    @foreach (var feld in Model.MeineFelder)
-                    {
-
-                        @Html.RouteLink(@feld.Name, new { action = "Edit", controller = "Felder", id = Model.Id })<br />
-
-                    }
-                 
-                </td>
-
-            </tr>
-}
-</table>
-
-
-  
+                </tr>
+            }         
+        </table>
+    <p>@Html.RouteLink("Neues Feld erstellen", new { action = "Create", controller = "Felder" })</p>
 </div>
 <p>
-   
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Datentyp bearbeiten", "Edit", new { id = Model.Id })
+    @Html.ActionLink("Übersicht", "Index")
 </p>

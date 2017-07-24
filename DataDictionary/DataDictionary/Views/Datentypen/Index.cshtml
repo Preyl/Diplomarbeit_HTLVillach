@@ -7,7 +7,7 @@
 <h2>Datentyen</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Neuer Datentyp", "Create")
 </p>
 <table class="table">
     <tr>
@@ -29,20 +29,16 @@
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
-      
-
         <td>
             @{
                 int i = 0;
                 foreach (var feld in item.MeineFelder)
                 {
-                    @Html.RouteLink(@feld.Name, new { action = "Edit", controller = "Felder", id = item.Id })
                     i++;
                 }
                 @: @i <br />
             }
         </td>
-
         <td>
             @{
                  i = 0;
@@ -53,10 +49,8 @@
                 @: @i <br />
             }
         </td>
-        <td>
-            
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-         
+        <td>            
+            @Html.ActionLink("Details", "Details", new { id=item.Id })
         </td>
     </tr>
 }
