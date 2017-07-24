@@ -47,12 +47,13 @@
                 </th>
             </tr>
             <tr>
+
                 <td>
                   
                     @foreach (var feld in Model.MeineFelder)
                     {
                         @:  @feld.Name <br />
-                       
+
 
                     } 
                    
@@ -61,7 +62,7 @@
                     @foreach (var feld in Model.MeineFelder)
                     {
                         @:  @feld.Sensibel <br />
-                       
+
                     }
                 </td>
                 <td>
@@ -84,11 +85,17 @@
 
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) <br/>
+                    @foreach (var feld in Model.MeineFelder)
+                    {
+
+                        @Html.RouteLink(@feld.Name, new { action = "Edit", controller = "Felder", id = Model.Id })<br />
+
+                    }
+                 
                 </td>
-               
+
             </tr>
-                   
+}
 </table>
 
 
