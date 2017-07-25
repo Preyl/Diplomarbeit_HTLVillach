@@ -105,7 +105,7 @@ namespace DataDictionary.Controllers
                     db.Entry(anwendungToUpdate).State = EntityState.Modified;
                     db.SaveChanges();
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Details", new { Id = anwendungToUpdate.Id });
                 }
                 catch (RetryLimitExceededException /* dex */)
                 {

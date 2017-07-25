@@ -4,13 +4,13 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Anwendung @Html.DisplayFor(model => model.Name) Details</h2>
+<h2>@Html.DisplayFor(model => model.Name)</h2>
 
 <div>
     <hr />
        <h3>Beschreibung: @Html.DisplayFor(model => model.Beschreibung)</h3> 
         <hr />
-    <h4>@Html.ActionLink("Anwendung Bearbeiten", "Edit", new { id = Model.Id }) </h4>
+    <p>@Html.ActionLink("Anwendung Bearbeiten", "Edit", new { id = Model.Id }) </p>
         <h3>Vorhandene Datentypen:</h3>
         @{ 
             foreach (var datentyp in Model.MeineDatentypen)

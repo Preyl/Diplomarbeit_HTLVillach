@@ -3,13 +3,14 @@
 @{
     ViewBag.Title = "Details";
 }
-<h2>Datentyp @Html.DisplayFor(model => model.Name) Details</h2>
+<h2>@Html.DisplayFor(model => model.Name)</h2>
 <div>
     <hr />
     <h3>Beschreibung: @Html.DisplayFor(model => model.Beschreibung)</h3>
 
     <hr />
-     <h4>@Html.ActionLink("Datentyp bearbeiten", "Edit", new { id = Model.Id })</h4>
+     <p>@Html.ActionLink("Datentyp bearbeiten", "Edit", new { id = Model.Id })</p>
+    <hr />
     <h3>Felder</h3>
         <table>        
             <tr>
@@ -59,7 +60,7 @@
                             i++;
                         }
                         @: @i <br />
-                        }
+                       }
                     </td>
                     <td>
                         @Html.RouteLink("Bearbeiten", new { action = "Edit", controller = "Felder", id = item.Id })<br />
@@ -68,9 +69,9 @@
                 </tr>
             }         
         </table>
-    <h5>@Html.RouteLink("Neues Feld erstellen", new { action = "Create", controller = "Felder" })</h5>
+    <p>@Html.RouteLink("Neues Feld erstellen", new { action = "Create", controller = "Felder" })</p>
 </div>
-
+<hr />
 <h3>Kommt in Anwendungen vor</h3>
 <ul>
     @foreach (var item in Model.MeineAnwendungen)

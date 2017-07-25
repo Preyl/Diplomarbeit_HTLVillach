@@ -54,7 +54,7 @@ namespace DataDictionary.Controllers
             {
                 db.Datentyp.Add(datentyp);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit", new { Id = datentyp.Id });
             }
 
             return View(datentyp);
@@ -110,7 +110,7 @@ namespace DataDictionary.Controllers
                     db.Entry(datentypToUpdate).State = EntityState.Modified;
                     db.SaveChanges();
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Details", new { Id = datentypToUpdate.Id });
                 }
                 catch (RetryLimitExceededException /* dex */)
                 {
