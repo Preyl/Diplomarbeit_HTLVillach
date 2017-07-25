@@ -4,25 +4,29 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>@Html.DisplayFor(model => model.Name)</h2>
 
 <div>
-    <h4>@Html.DisplayFor(model => model.Name)</h4>
     <hr />
         @Html.DisplayFor(model => model.Beschreibung) <br />
-        @{
+        <hr />
+        @{ 
             foreach (var datentyp in Model.MeineDatentypen)
             {       
-                    @Html.RouteLink(@datentyp.Name, new { action = "Edit", controller = "Datentypen", id = Model.Id})<br />
-                
-                    foreach (var feld in datentyp.MeineFelder)
+                <h4>@Html.RouteLink(@datentyp.Name, new { action = "Edit", controller = "Datentypen", id = datentyp.Id })<br /></h4>
+                <ul>
+                    @foreach (var feld in datentyp.MeineFelder)
                     {
-                        @:  @feld.Name <br />
+                        <li>
+                            @feld.Name <br />
+                        </li>                    
                     }
+                </ul>
+                
             }
         }
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Bearbeiten", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Übersicht", "Index")
 </p>

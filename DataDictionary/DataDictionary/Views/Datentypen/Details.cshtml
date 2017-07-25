@@ -4,16 +4,22 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>@Html.DisplayFor(model => model.Name)</h2>
 <div>
-    <h4>@Html.DisplayFor(model => model.Name)</h4>
     <hr />
-      <p>@Html.DisplayFor(model => model.Beschreibung)</p>
-      @foreach (var item in Model.MeineAnwendungen)
-      {
-          @Html.RouteLink(item.Name, new { action = "Details", controller = "Anwendungen", id = item.Id}) <br >
-      }
-        <table class="table">        
+    <p>@Html.DisplayFor(model => model.Beschreibung)</p>
+    <hr />
+    <h4>Anwendungen</h4>
+    <ul>
+          @foreach (var item in Model.MeineAnwendungen)
+          {
+              <li>
+                  @Html.RouteLink(item.Name, new { action = "Details", controller = "Anwendungen", id = item.Id })<br />
+              </li> 
+          }
+    </ul>
+    <h4>Felder</h4>
+        <table>        
             <tr>
                 <th>
                     Name
