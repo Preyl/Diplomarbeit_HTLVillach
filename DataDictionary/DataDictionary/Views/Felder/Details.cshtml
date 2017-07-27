@@ -37,6 +37,8 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id })*@ 
+    <input type="button" class="btn btn-info" value="Bearbeiten!" onclick="location.href='@Url.Action("Edit", new { id = Model.Id })'" />
+    @*@Html.ActionLink("Back to List", "Index")*@
+    <input type="button" class="btn btn-info" value="Zurück zur Übersicht!" onclick="location.href='@Url.Action("Index")'" />
 </p>

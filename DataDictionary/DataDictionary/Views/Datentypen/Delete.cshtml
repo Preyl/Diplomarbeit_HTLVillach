@@ -16,7 +16,8 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Löschen" class="btn btn-default" /> |
-            @Html.ActionLink("Abbrechen", "Index")
+            @*@Html.ActionLink("Abbrechen", "Index")*@
+            <input type="button" class="btn btn-info" value="Abbrechen!" onclick="location.href='@Url.Action("Index")'" />
         </div>
     }
 </div>

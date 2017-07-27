@@ -10,7 +10,9 @@
     <hr />
        <h3>Beschreibung: @Html.DisplayFor(model => model.Beschreibung)</h3> 
         <hr />
-    <p>@Html.ActionLink("Anwendung Bearbeiten", "Edit", new { id = Model.Id }) </p>
+   
+    @*<p>@Html.ActionLink("Anwendung Bearbeiten", "Edit", new { id = Model.Id }) </p>*@
+    <input type="button" class="btn btn-info" value="Anwendung bearbeiten!" onclick="location.href='@Url.Action("Edit", new { id = Model.Id })'" />
         <h3>Vorhandene Datentypen:</h3>
         @{ 
             foreach (var datentyp in Model.MeineDatentypen)
@@ -33,5 +35,6 @@
 </div>
 <p>
     
-    <h5>@Html.ActionLink("Zurück zur Übersicht", "Index")</h5>
+    @*<h5>@Html.ActionLink("Zurück zur Übersicht", "Index")</h5>*@
+    <input type="button" class="btn btn-info" value="Zurück zur Übersicht!" onclick="location.href='@Url.Action("Index")'" />
 </p>

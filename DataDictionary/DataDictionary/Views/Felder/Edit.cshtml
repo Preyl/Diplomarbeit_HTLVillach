@@ -50,7 +50,8 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index", "Datentypen")
+   @* @Html.ActionLink("Back to List", "Index", "Datentypen")*@
+    <input type="button" class="btn btn-info" value="Zurück zur Übersicht!" onclick="location.href='@Url.Action("Index","Datentypen")'" />
 </div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
