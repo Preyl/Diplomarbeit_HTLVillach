@@ -69,7 +69,8 @@ namespace DataDictionary.Controllers
             }
 
             Anwendung anwendung = db.Anwendung
-              .Include(a => a.MeineDatentypen)                   
+              .Include(a => a.MeineDatentypen)
+              .Include(p => p.MeineFelder)
               .Where(i => i.Id == id)
               .Single();
 
@@ -78,6 +79,7 @@ namespace DataDictionary.Controllers
                 return HttpNotFound();
             }
             PopulateAssignedDatentypData(anwendung);
+            PopulateAssignedFeldData(anwendung);
             return View(anwendung);
         }
 
@@ -95,6 +97,7 @@ namespace DataDictionary.Controllers
 
             var anwendungToUpdate = db.Anwendung
                 .Include(p => p.MeineDatentypen)
+                .Include(p => p.MeineFelder)
                 .Where(i => i.Id == id)
                 .Single();
 
@@ -102,11 +105,12 @@ namespace DataDictionary.Controllers
             {
                 try
                 {
-                    UpdateAnwendungDatentyp(selectedDatentypen, anwendungToUpdate);             
+                    UpdateAnwendungDatentyp(selectedDatentypen, anwendungToUpdate);
+                    UpdateAnwendungFeld(selectedFelder, anwendungToUpdate);           
                     db.Entry(anwendungToUpdate).State = EntityState.Modified;
                     db.SaveChanges();
 
-                    return RedirectToAction("Details", new { Id = anwendungToUpdate.Id });
+                    return RedirectToAction("Edit", new { Id = anwendungToUpdate.Id });
                 }
                 catch (RetryLimitExceededException /* dex */)
                 {
@@ -170,7 +174,24 @@ namespace DataDictionary.Controllers
             }
             ViewBag.Datentyp = viewModel;
         }
-        
+
+        private void PopulateAssignedFeldData(Anwendung anwendung)
+        {
+            var alleFelder = db.Feld;
+            var DatentypFeld = new HashSet<int>(anwendung.MeineFelder.Select(b => b.Id));
+            var viewModel = new List<Anwendung_Feld_VM>();
+            foreach (var feld in alleFelder)
+            {
+                viewModel.Add(new Anwendung_Feld_VM
+                {
+                    FeldID = feld.Id,
+                    FeldName = feld.Name,
+                    Assigned = DatentypFeld.Contains(feld.Id)
+                });
+            }
+            ViewBag.Feld = viewModel;
+        }
+
         private void UpdateAnwendungDatentyp(string[] selectedDatentypen, Anwendung anwendungToUpdate)
         {
             if (selectedDatentypen == null)
@@ -197,6 +218,37 @@ namespace DataDictionary.Controllers
                     if (datentypenAnwendungen.Contains(datentyp.Id))
                     {
                         anwendungToUpdate.MeineDatentypen.Remove(datentyp);
+                    }
+                }
+            }
+        }
+
+        private void UpdateAnwendungFeld(string[] selectedFelder, Anwendung anwendungToUpdate)
+        {
+            if (selectedFelder == null)
+            {
+                anwendungToUpdate.MeineFelder = new List<Feld>();
+                return;
+            }
+
+            var selectedFelderHS = new HashSet<string>(selectedFelder);
+            var felderAnwendungen = new HashSet<int>
+                (anwendungToUpdate.MeineFelder.Select(d => d.Id));
+
+            foreach (var feld in db.Feld)
+            {
+                if (selectedFelderHS.Contains(feld.Id.ToString()))
+                {
+                    if (!felderAnwendungen.Contains(feld.Id))
+                    {
+                        anwendungToUpdate.MeineFelder.Add(feld);
+                    }
+                }
+                else
+                {
+                    if (felderAnwendungen.Contains(feld.Id))
+                    {
+                        anwendungToUpdate.MeineFelder.Remove(feld);
                     }
                 }
             }

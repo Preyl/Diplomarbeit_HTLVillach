@@ -31,6 +31,11 @@ namespace DataDictionary.Models
                 .WithMany(e => e.MeineAnwendungen)
                 .Map(m => m.ToTable("Anwendung_Datentyp").MapLeftKey("AnwendungId").MapRightKey("DatentypId"));
 
+            modelBuilder.Entity<Anwendung>()
+                .HasMany(e => e.MeineFelder)
+                .WithMany(e => e.MeineAnwendungen)
+                .Map(m => m.ToTable("Anwendung_Feld").MapLeftKey("AnwendungId").MapRightKey("FeldId"));
+
             modelBuilder.Entity<Datentyp>()
                 .Property(e => e.Name)
                 .IsUnicode(false);

@@ -30,24 +30,10 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @{
-                int i = 0;
-                foreach (var feld in item.MeineFelder)
-                {
-                    i++;
-                }
-                @: @i <br />
-            }
+            @item.MeineFelder.Count()
         </td>
         <td>
-            @{
-                 i = 0;
-                foreach (var anwendung in item.MeineAnwendungen)
-                {
-                    i++;
-                }
-                @: @i <br />
-            }
+            @item.MeineAnwendungen.Count()
         </td>
         <td>            
             @Html.ActionLink("Details", "Details", new { id=item.Id })

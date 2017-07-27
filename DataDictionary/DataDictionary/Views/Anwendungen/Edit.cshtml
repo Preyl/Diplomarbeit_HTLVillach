@@ -58,9 +58,49 @@
                             @:</tr>
                         }
                     </table>
+                <input type="submit" value="Speichern" />
                 </div>
             </div>
-        
+        <hr />
+        <div>
+            <label>Felder</label>
+            <div>
+                <table>
+                    <tr>
+                        @{
+                            int cnt2 = 0;
+                            List<DataDictionary.ViewModels.Anwendung_Feld_VM> felder = ViewBag.Feld;
+                            List<int> mFelder = new List<int>();
+
+                            foreach (var datentyp in Model.MeineDatentypen)
+                            {
+                                foreach (var feld in datentyp.MeineFelder)
+                                { 
+                                    mFelder.Add(feld.Id);
+                                }
+                            }
+                            foreach (var feld in felder)
+                            {
+                                if (mFelder.Contains(feld.FeldID))
+                                {
+                                    if (cnt2++ % 3 == 0)
+                                    {
+                                        @:</tr><tr>
+                                    }
+                                    @:<td>
+                                    <input type="checkbox"
+                                           name="selectedFelder"
+                                           value="@feld.FeldID"
+                                    @(Html.Raw(feld.Assigned ? "checked=\"checked\"" : "")) />
+                                    @feld.FeldName
+                                    @:</td>  
+                                }                                                                        
+                            }                          
+                            @:</tr>
+                        }
+                    </table>
+                </div>
+            </div>
         <div>
             <hr />
             <input type="submit" value="Speichern"/>

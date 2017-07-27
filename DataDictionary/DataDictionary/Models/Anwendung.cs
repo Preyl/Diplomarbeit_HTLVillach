@@ -13,6 +13,7 @@ namespace DataDictionary.Models
         public Anwendung()
         {
             MeineDatentypen = new HashSet<Datentyp>();
+            MeineFelder = new HashSet<Feld>();
         }
 
         public int Id { get; set; }
@@ -27,5 +28,8 @@ namespace DataDictionary.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Datentyp> MeineDatentypen { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Feld> MeineFelder { get; set; }
     }
 }

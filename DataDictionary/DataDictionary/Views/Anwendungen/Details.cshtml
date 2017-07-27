@@ -19,9 +19,12 @@
                 <ul>
                     @foreach (var feld in datentyp.MeineFelder)
                     {
-                        <li>
-                            @feld.Name <br />
-                        </li>                    
+                        if (feld.MeineAnwendungen.Contains(Model))
+                        {
+                            <li>
+                                @feld.Name <br />
+                            </li>
+                        }
                     }
                 </ul>
                 
