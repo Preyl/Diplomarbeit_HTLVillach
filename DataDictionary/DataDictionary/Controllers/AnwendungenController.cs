@@ -67,8 +67,9 @@ namespace DataDictionary.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Anwendung anwendung = db.Anwendung
-              .Include(a => a.MeineDatentypen)   
+              .Include(a => a.MeineDatentypen)                   
               .Where(i => i.Id == id)
               .Single();
 
