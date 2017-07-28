@@ -87,23 +87,21 @@
                         }
                     </table>
                 @*<p>@Html.RouteLink("Neues Feld erstellen", new { action = "Create", controller = "Felder", Model.Id})</p>*@
-                <input type="button" class="btn btn-info" value="Neues Feld erstellen!" onclick="location.href='@Url.Action("Create","Felder",new { Model.Id })'" />
+                <input type="button" class="btn btn-info" value="Neues Feld erstellen" onclick="location.href='@Url.Action("Create","Felder",new { Model.Id })'" />
                 </div>
             </div>
         <div>
             <div>
                 <hr />
                 <input type="submit" value="Speichern"/>
+                @*  <h5>@Html.ActionLink("Zurück zur Übersicht", "Index")</h5>*@
+                <input type="button" class="btn btn-info" value="Zurück zur Übersicht" onclick="location.href='@Url.Action("Index")'" />
                 <hr />
             </div>
         </div>
     </div>
 }
 
-<div>
- @*  <h5>@Html.ActionLink("Zurück zur Übersicht", "Index")</h5>*@
-    <input type="button" class="btn btn-info" value="Zurück zur Übersicht!" onclick="location.href='@Url.Action("Index")'" />
-</div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
