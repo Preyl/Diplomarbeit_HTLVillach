@@ -21,7 +21,7 @@
                 @Html.ValidationMessageFor(model => model.Name, "")
             </div>
         </div>
-
+        <hr />
         <div>
             @Html.LabelFor(model => model.Sensibel)
             <div>
@@ -31,7 +31,7 @@
         </div>
 
         <div>
-            @Html.LabelFor(model => model.PK, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PK)
             <div>
                 @Html.EditorFor(model => model.PK)
                 @Html.ValidationMessageFor(model => model.PK, "")
@@ -42,17 +42,14 @@
             <div>
                 <hr />
                 <input type="submit" value="Erstellen"/>
+                <input type="button" class="btn btn-info" value="Zurück zur Übersicht" onclick="location.href='@Url.Action("Index","Datentypen")'" />
                 <hr />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @*<h5>@Html.RouteLink("Zurück zur Übersicht", new { action = "Index", controller = "Datentypen" })</h5>*@
-    <input type="button" class="btn btn-info" value="Zurück zur Übersicht!" onclick="location.href='@Url.Action("Index","Datentypen")'" />
-</div>
-
+   
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

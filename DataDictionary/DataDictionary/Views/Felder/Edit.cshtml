@@ -23,7 +23,7 @@
                 @Html.ValidationMessageFor(model => model.Name, "")
             </div>
         </div>
-
+        <hr />
         <div>
             @Html.LabelFor(model => model.Sensibel)
             <div>
@@ -39,13 +39,10 @@
                 @Html.ValidationMessageFor(model => model.PK, "")
             </div>
         </div>
-
+        <hr />
         <div>
             <div>
                 <input type="submit" value="Speichern" />
-
-                @* @Html.ActionLink("Back to List", "Index", "Datentypen")*@
-                <input type="button" class="btn btn-info" value="Zurück zur Übersicht" onclick="location.href='@Url.Action("Index","Datentypen")'" />
             </div>
         </div>
     </div>

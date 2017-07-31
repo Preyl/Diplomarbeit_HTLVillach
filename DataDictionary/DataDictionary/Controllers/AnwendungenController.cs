@@ -96,9 +96,9 @@ namespace DataDictionary.Controllers
             }
 
             var anwendungToUpdate = db.Anwendung
-                .Include(p => p.MeineDatentypen)
-                .Include(p => p.MeineFelder)
-                .Where(i => i.Id == id)
+                .Include(a => a.MeineDatentypen)
+                .Include(a => a.MeineFelder)
+                .Where(a => a.Id == id)
                 .Single();
 
             if (TryUpdateModel(anwendungToUpdate, "", new string[] { "Id", "Name", "Beschreibung" }))
@@ -119,7 +119,7 @@ namespace DataDictionary.Controllers
                 }
             }
             //PopulateAssignedDatentypData(anwendungToUpdate);
-            //ViewBag.FeldId = new SelectList(db.Datentyp, "Id", "Name", datentypToUpdate.Id);
+            //ViewBag.FeldId = new SelectList(db.Datentyp, "Id", "Name", anwendungToUpdate.Id);
             return View(anwendungToUpdate);
         }
 
@@ -161,7 +161,7 @@ namespace DataDictionary.Controllers
         private void PopulateAssignedDatentypData(Anwendung anwendung)
         {
             var alleDatentypen = db.Datentyp;
-            var AnwendungDatentyp = new HashSet<int>(anwendung.MeineDatentypen.Select(b => b.Id));
+            var AnwendungDatentyp = new HashSet<int>(anwendung.MeineDatentypen.Select(d => d.Id));
             var viewModel = new List<Datentyp_Anwendung_VM>();
             foreach (var datentyp in alleDatentypen)
             {
@@ -178,7 +178,7 @@ namespace DataDictionary.Controllers
         private void PopulateAssignedFeldData(Anwendung anwendung)
         {
             var alleFelder = db.Feld;
-            var DatentypFeld = new HashSet<int>(anwendung.MeineFelder.Select(b => b.Id));
+            var DatentypFeld = new HashSet<int>(anwendung.MeineFelder.Select(f => f.Id));
             var viewModel = new List<Anwendung_Feld_VM>();
             foreach (var feld in alleFelder)
             {
@@ -233,7 +233,7 @@ namespace DataDictionary.Controllers
 
             var selectedFelderHS = new HashSet<string>(selectedFelder);
             var felderAnwendungen = new HashSet<int>
-                (anwendungToUpdate.MeineFelder.Select(d => d.Id));
+                (anwendungToUpdate.MeineFelder.Select(f => f.Id));
 
             foreach (var feld in db.Feld)
             {

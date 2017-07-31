@@ -58,7 +58,6 @@
                             @:</tr>
                         }
                     </table>
-                <input type="submit" value="Speichern" />
                 </div>
             </div>
         <hr />
@@ -104,15 +103,12 @@
         <div>
             <hr />
             <input type="submit" value="Speichern"/>
+            <input type="button" class="btn btn-info" value="Zurück zur Übersicht" onclick="location.href='@Url.Action("Index")'" />
+            <input type="button" class="btn btn-info" value="Zurück zu Details" onclick="location.href='@Url.Action("Details", new { id = Model.Id })'" />
             <hr />
         </div>
     </div>
 }
-
-<div>
-   @*<h5>@Html.ActionLink("Zurück zur Übersicht", "Index")</h5>*@ 
-    <input type="button" class="btn btn-info" value="Zurück zur Übersicht" onclick="location.href='@Url.Action("Index")'" />
-</div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>

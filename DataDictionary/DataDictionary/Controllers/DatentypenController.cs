@@ -68,9 +68,9 @@ namespace DataDictionary.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Datentyp datentyp = db.Datentyp
-               .Include(p => p.MeineAnwendungen)
-               .Include(p => p.MeineFelder)
-               .Where(i => i.Id == id)
+               .Include(d => d.MeineAnwendungen)
+               .Include(d => d.MeineFelder)
+               .Where(d => d.Id == id)
                .Single();
 
 
@@ -161,7 +161,7 @@ namespace DataDictionary.Controllers
         private void PopulateAssignedAnwendungData(Datentyp datentyp)
         {
             var alleAnwendungen = db.Anwendung;
-            var DatentypAnwendung = new HashSet<int>(datentyp.MeineAnwendungen.Select(b => b.Id));
+            var DatentypAnwendung = new HashSet<int>(datentyp.MeineAnwendungen.Select(a => a.Id));
             var viewModel = new List<Anwendung_Datentyp_VM>();
             foreach (var anwendung in alleAnwendungen)
             {
@@ -178,7 +178,7 @@ namespace DataDictionary.Controllers
         private void PopulateAssignedFeldData(Datentyp datentyp)
         {
             var alleFelder = db.Feld;
-            var DatentypFeld = new HashSet<int>(datentyp.MeineFelder.Select(b => b.Id));
+            var DatentypFeld = new HashSet<int>(datentyp.MeineFelder.Select(a => a.Id));
             var viewModel = new List<Feld_Datentyp_VM>();
             foreach (var feld in alleFelder)
             {
@@ -202,7 +202,7 @@ namespace DataDictionary.Controllers
 
             var selectedAnwendungHS = new HashSet<string>(selectedAnwendungen);
             var anwendungenDatentypen = new HashSet<int>
-                (datentypToUpdate.MeineAnwendungen.Select(d => d.Id));
+                (datentypToUpdate.MeineAnwendungen.Select(a => a.Id));
 
             foreach (var anwendung in db.Anwendung)
             {
@@ -233,7 +233,7 @@ namespace DataDictionary.Controllers
 
             var selectedFelderHS = new HashSet<string>(selectedFelder);
             var felderDatentypen = new HashSet<int>
-                (datentypToUpdate.MeineFelder.Select(d => d.Id));
+                (datentypToUpdate.MeineFelder.Select(f => f.Id));
 
             foreach (var feld in db.Feld)
             {
