@@ -10,7 +10,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div>
         <hr />
         @Html.ValidationSummary(true, "")
@@ -64,42 +64,40 @@
         <div>
             <label>Felder</label>
             <div>
-                <table>
-                    <tr>
-                        @{
-                            int cnt2 = 0;
-                            List<DataDictionary.ViewModels.Anwendung_Feld_VM> felder = ViewBag.Feld;
-                            List<int> mFelder = new List<int>();
+            @{
+                List<DataDictionary.ViewModels.Anwendung_Feld_VM> felder = ViewBag.Feld;
+                List<int> mFelder = new List<int>();
 
-                            foreach (var datentyp in Model.MeineDatentypen)
-                            {
-                                foreach (var feld in datentyp.MeineFelder)
-                                { 
-                                    mFelder.Add(feld.Id);
-                                }
-                            }
-                            foreach (var feld in felder)
-                            {
-                                if (mFelder.Contains(feld.FeldID))
+                foreach (var datentyp in Model.MeineDatentypen)
+                {
+                    <h5>@datentyp.Name</h5>
+                    @: <table>
+                        @: <tr>
+                                foreach (var feld1 in datentyp.MeineFelder)
                                 {
-                                    if (cnt2++ % 3 == 0)
+                                    mFelder.Add(feld1.Id);
+                                    foreach (var feld in felder)
                                     {
-                                        @:</tr><tr>
+                                        if (feld.FeldID == feld1.Id)
+                                        {
+                                            <td>
+                                                <input type="checkbox"
+                                                       name="selectedFelder"
+                                                       value="@feld.FeldID"
+                                                       @(Html.Raw(feld.Assigned ? "checked=\"checked\"" : "")) />
+                                                @feld.FeldName
+                                            </td>
+                                        }
+
                                     }
-                                    @:<td>
-                                    <input type="checkbox"
-                                           name="selectedFelder"
-                                           value="@feld.FeldID"
-                                    @(Html.Raw(feld.Assigned ? "checked=\"checked\"" : "")) />
-                                    @feld.FeldName
-                                    @:</td>  
-                                }                                                                        
-                            }                          
-                            @:</tr>
-                        }
-                    </table>
-                </div>
+                                } 
+                        @:</tr>
+                    @:</table>
+                }
+            }
+
             </div>
+        </div>
         <div>
             <hr />
             <input type="submit" value="Speichern"/>
