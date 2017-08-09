@@ -1,0 +1,111 @@
+﻿
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/multiSel_Search")
+}
+
+@model DataDictionary.Models.Datentyp
+
+@{
+    ViewBag.Title = "Edit";
+}
+<link href="~/Content/Editstylesheet.css" rel="stylesheet" />
+
+<h2>@Html.DisplayFor(model => model.Name)</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        <hr />
+        @Html.ValidationSummary(true, "")
+        @Html.HiddenFor(model => model.Id)
+
+        <div>
+            @Html.LabelFor(model => model.Name)
+            <div>
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name, "")
+            </div>
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.Beschreibung)
+            <div>
+                @Html.EditorFor(model => model.Beschreibung)
+                @Html.ValidationMessageFor(model => model.Beschreibung, "")
+            </div>
+        </div>
+        <hr />
+        <div>
+            <div>&nbsp;</div>
+            
+            <div class="box">
+                <label>Meine Anwendungen</label>
+                <input type="text" onkeyup="MyUtil.selectFilter('selectedAnwendungen', this.value)" placeholder="Suchen" /> <br />
+                @Html.ListBox("selectedAnwendungen", (MultiSelectList)ViewBag.selectedAnwendungen, new { @class = "lbjs" })
+            </div>
+            <div class="but">
+                <div>
+                    <button type="button" id="btnRightAnwendung">
+                        <span aria-hidden="true">>></span>
+                    </button>
+                </div>
+                <div>
+                    <button type="button" id="btnLeftAnwendung">
+                        <span aria-hidden="true"><<</span>
+                    </button>
+                    <div></div>
+                </div>
+            </div>
+            
+            <div class="box">
+                <label>Alle Anwendungen</label>
+                <input type="text" onkeyup="MyUtil.selectFilter('alleAnwendungen', this.value)" placeholder="Suchen" /> <br />
+                @Html.ListBox("alleAnwendungen", (MultiSelectList)ViewBag.alleAnwendungen, new { @class = "lbjs" })
+            </div>
+        </div>
+        <hr class="clear" />
+        <div>
+            <div>&nbsp;</div>
+           
+            <div class="box">
+                <label>Meine Felder</label>
+                <input type="text" onkeyup="MyUtil.selectFilter('selectedFelder', this.value)" placeholder="Suchen" /> <br />
+                @Html.ListBox("selectedFelder", (MultiSelectList)ViewBag.selectedFelder, new { @class = "lbjs" })
+            </div>
+            <div class="but">
+                <div>
+                    <button type="button" id="btnRightFeld">
+                        <span aria-hidden="true">>></span>
+                    </button>
+                </div>
+                <div>
+                    <button type="button" id="btnLeftFeld">
+                        <span aria-hidden="true"><<</span>
+                    </button>
+                    <div></div>
+                </div>
+            </div>        
+                <div class="box">
+                    <label>Alle Felder</label>
+                    <input type="text" onkeyup="MyUtil.selectFilter('alleFelder', this.value)" placeholder="Suchen" /> <br />
+                    @Html.ListBox("alleFelder", (MultiSelectList)ViewBag.alleFelder, new { @class = "lbjs" })
+                </div>
+            </div>
+
+        <input type="button" class="but" value="Neues Feld erstellen" onclick="location.href='@Url.Action("Create","Felder",new { Model.Id })'" />
+
+        <div>
+            <div>
+                <hr class="clear" />
+                <input type="submit" id="btnSubmit" value="Speichern" />
+                @*<input type="button" class="btn btn-info" value="Zurück zur Übersicht" onclick="location.href='@Url.Action("Index")'" />*@
+                <hr />
+            </div>
+        </div>
+    </div>
+}
+
+

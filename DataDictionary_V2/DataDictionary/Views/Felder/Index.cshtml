@@ -1,0 +1,48 @@
+﻿@model IEnumerable<DataDictionary.Models.Feld>
+
+@{
+    ViewBag.Title = "Felder";
+}
+
+<h2>Felder</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sensibel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PK)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sensibel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PK)
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.Id })*@ 
+            <input type="button" class="btn btn-info" value="Bearbeiten!" onclick="location.href='@Url.Action("Edit", new { id = item.Id })'" />
+           @* @Html.ActionLink("Details", "Details", new { id=item.Id })*@ 
+            <input type="button" class="btn btn-info" value="Details!" onclick="location.href='@Url.Action("Details", new { id = item.Id })'" />
+           @* @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+            <input type="button" class="btn btn-info" value="Delete!" onclick="location.href='@Url.Action("Delete", new { id = item.Id })'" />
+        </td>
+    </tr>
+}
+
+</table>
