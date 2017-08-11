@@ -67,41 +67,44 @@
        </div>
         <hr class="clear"/>
         <div>
-          
+            
             <div>
             @{
+                var i = 1;
                 List<DataDictionary.ViewModels.Anwendung_Feld_VM> felder = ViewBag.Feld;
                 List<int> mFelder = new List<int>();
 
                 foreach (var datentyp in Model.MeineDatentypen)
                 {
-                    <label class="collapse" for="_1">@datentyp.Name</label>
-                    <input id="_1" type="checkbox">
+
+                    <label class="collapse" for="_@i">@datentyp.Name</label>
+                    <input id="_@i" type="checkbox">
                     @:<div>
                         @:<ul class="ul">
 
                             foreach (var feld1 in datentyp.MeineFelder)
                             {
-                            mFelder.Add(feld1.Id);
-                            foreach (var feld in felder)
-                            {
-                            if (feld.FeldID == feld1.Id)
-                            {
-                            <li class="li">
-                                <label>
-                                    <input type="checkbox"
-                                           name="selectedFelder"
-                                           value="@feld.FeldID"
-                                           @(Html.Raw(feld.Assigned ? "checked=\"checked\"" : "")) />
-                                    @feld.FeldName
-                                </label>
-                            </li>
-                            }
+                                mFelder.Add(feld1.Id);
+                                foreach (var feld in felder)
+                                {
+                                    if (feld.FeldID == feld1.Id)
+                                    {
+                                        <li class="li">
+                                            <label>
+                                                <input type="checkbox"
+                                                       name="selectedFelder"
+                                                       value="@feld.FeldID"
+                                                       @(Html.Raw(feld.Assigned ? "checked=\"checked\"" : "")) />
+                                                @feld.FeldName
+                                            </label>
+                                        </li>
+                                    }
 
-                            }
+                                }
                             }
                             @:</ul>
                     @:</div>
+                    i++;
                 }
             }
         </div>
