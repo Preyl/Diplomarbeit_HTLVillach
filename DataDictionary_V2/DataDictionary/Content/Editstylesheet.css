@@ -38,7 +38,7 @@
 .collapse{
   cursor: pointer;
   display: block;
-  background: #cdf;
+  color:darkblue;
 }
 .collapse + input{
   display: none; /* hide the checkboxes */
