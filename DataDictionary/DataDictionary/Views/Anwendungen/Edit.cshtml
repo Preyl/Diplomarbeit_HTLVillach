@@ -23,6 +23,7 @@
                 @Html.ValidationMessageFor(model => model.Name, "")
             </div>
         </div>
+    </div>
 
         <div>
             @Html.LabelFor(model => model.Beschreibung)
@@ -32,34 +33,30 @@
             </div>
         </div>
         <hr />
-        <div>
-            <label>Datentypen</label>
-            <div>
-                <table>
-                    <tr>
-                        @{
-                            int cnt = 0;
-                            List<DataDictionary.ViewModels.Datentyp_Anwendung_VM> datentypen = ViewBag.Datentyp;
-
-                            foreach (var datentyp in datentypen)
-                            {
-                                if (cnt++ % 3 == 0)
-                                {
-                                    @:</tr><tr>
-                                }
-                                @:<td>
-                                    <input type="checkbox"
-                                           name="selectedDatentypen"
-                                           value="@datentyp.DatentypID"
-                                           @(Html.Raw(datentyp.Assigned ? "checked=\"checked\"" : "")) />
-                                        @datentyp.DatentypName
-                                        @:</td>
-                            }
-                            @:</tr>
-                        }
-                    </table>
+        <div class="row">
+            <div class="col-md-2">&nbsp;</div>
+            <div class="form-group col-md-4">
+                <label class="control-label"> Selected Datentypen</label>
+                @Html.ListBox("selectedOptions", (MultiSelectList)ViewBag.selOpts, new { @class = "form-control" })
+            </div>
+            <div class="form-group col-md-1">
+                <div class="form-group">
+                    <button type="button" id="btnRight" class="btn btn-warning btn-lg">
+                        <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="form-group">
+                    <button type="button" id="btnLeft" class="btn btn-success btn-lg">
+                        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                    </button>
+                    <div></div>
                 </div>
             </div>
+            <div class="form-group col-md-4">
+                <label class="control-label">Available Datentypen</label>
+                @Html.ListBox("availOptions", (MultiSelectList)ViewBag.availOpts, new { @class = "form-control" })
+            </div>
+        </div>
         <hr />
         <div>
             <label>Felder</label>
@@ -95,8 +92,6 @@
                     @:</table>
                 }
             }
-
-            </div>
         </div>
         <div>
             <hr />
@@ -108,6 +103,4 @@
     </div>
 }
 
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+

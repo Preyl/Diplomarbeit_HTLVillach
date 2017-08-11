@@ -162,18 +162,38 @@ namespace DataDictionary.Controllers
         {
             var alleDatentypen = db.Datentyp;
             var AnwendungDatentyp = new HashSet<int>(anwendung.MeineDatentypen.Select(d => d.Id));
-            var viewModel = new List<Datentyp_Anwendung_VM>();
+
+            var viewModelAvailable = new List<Datentyp_Anwendung_VM>();
+            var viewModelSelected = new List<Datentyp_Anwendung_VM>();
+
             foreach (var datentyp in alleDatentypen)
             {
-                viewModel.Add(new Datentyp_Anwendung_VM
+                if (AnwendungDatentyp.Contains(datentyp.Id))
                 {
-                    DatentypID = datentyp.Id,
-                    DatentypName = datentyp.Name,
-                    Assigned = AnwendungDatentyp.Contains(datentyp.Id)
-                });
+                    viewModelSelected.Add(new Datentyp_Anwendung_VM
+                    {
+                        DatentypID = datentyp.Id,
+                        DatentypName = datentyp.Name,
+                        // Assigned = true
+                    });
+                }
+                else
+                {
+                    viewModelAvailable.Add(new Datentyp_Anwendung_VM
+                    {
+                        DatentypID = datentyp.Id,
+                        DatentypName = datentyp.Name,
+                        // Assigned = false
+                    });
+
+                }
             }
-            ViewBag.Datentyp = viewModel;
-        }
+    
+                //ViewBag.Datentyp = viewModel;
+                ViewBag.selOpts  = new MultiSelectList(viewModelSelected, "DatentypID", "DatentypName");
+                ViewBag.availOpts = new MultiSelectList(viewModelAvailable, "DatentypID", "DatentypName");
+
+            }
 
         private void PopulateAssignedFeldData(Anwendung anwendung)
         {

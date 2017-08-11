@@ -5,11 +5,15 @@
     <title>Intranet - Data Dictionary</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
-    @Styles.Render("~/Content/Site.css")
+    <script src="~/Scripts/multiSel.js"></script>
+     @Styles.Render("~/Content/Site.css")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/themes/base/css")
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/multisel")
+   @*@Scripts.Render("~/bundles/jqueryui")*@
+    @Scripts.Render("~/bundles/bootstrap")
 </head>
 <body>
     <header>
@@ -42,6 +46,6 @@
             </div>
         </div>
     </footer>
-    @RenderSection("scripts", required: false)
+       
 </body>
 </html>
