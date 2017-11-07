@@ -162,34 +162,64 @@ namespace DataDictionary.Controllers
         {
             var alleAnwendungen = db.Anwendung;
             var DatentypAnwendung = new HashSet<int>(datentyp.MeineAnwendungen.Select(a => a.Id));
-            var viewModel = new List<Anwendung_Datentyp_VM>();
+
+            var viewModelAvailable = new List<Anwendung_Datentyp_VM>();
+            var viewModelSelected = new List<Anwendung_Datentyp_VM>();
+
             foreach (var anwendung in alleAnwendungen)
             {
-                viewModel.Add(new Anwendung_Datentyp_VM
+                if (DatentypAnwendung.Contains(anwendung.Id))
                 {
-                    AnwendungID = anwendung.Id,
-                    AnwendungName = anwendung.Name,
-                    Assigned = DatentypAnwendung.Contains(anwendung.Id)
-                });
+
+                    viewModelSelected.Add(new Anwendung_Datentyp_VM
+                    {
+                        AnwendungID = anwendung.Id,
+                        AnwendungName = anwendung.Name,                    
+                    });
+                }
+                else
+                {
+                    viewModelAvailable.Add(new Anwendung_Datentyp_VM
+                    {
+                        AnwendungID = anwendung.Id,
+                        AnwendungName = anwendung.Name,
+                    });
+
+                }
             }
-            ViewBag.Anwendung = viewModel;
+            ViewBag.selectedAnwendungen = new MultiSelectList(viewModelSelected, "AnwendungID", "AnwendungName");
+            ViewBag.alleAnwendungen = new MultiSelectList(viewModelAvailable, "AnwendungID", "AnwendungName");
         }
 
         private void PopulateAssignedFeldData(Datentyp datentyp)
         {
             var alleFelder = db.Feld;
             var DatentypFeld = new HashSet<int>(datentyp.MeineFelder.Select(a => a.Id));
-            var viewModel = new List<Feld_Datentyp_VM>();
+
+            var viewModelAvailable = new List<Feld_Datentyp_VM>();
+            var viewModelSelected = new List<Feld_Datentyp_VM>();
+
             foreach (var feld in alleFelder)
             {
-                viewModel.Add(new Feld_Datentyp_VM
+                if (DatentypFeld.Contains(feld.Id))
                 {
-                    FeldID = feld.Id,
-                    FeldName = feld.Name,
-                    Assigned = DatentypFeld.Contains(feld.Id)
-                });
+                    viewModelSelected.Add(new Feld_Datentyp_VM
+                    {
+                        FeldID = feld.Id,
+                        FeldName = feld.Name,
+                    });
+                }
+                else
+                {
+                    viewModelAvailable.Add(new Feld_Datentyp_VM
+                    {
+                        FeldID = feld.Id,
+                        FeldName = feld.Name,
+                    });
+                }
             }
-            ViewBag.Feld = viewModel;
+            ViewBag.selectedFelder = new MultiSelectList(viewModelSelected, "FeldID", "FeldName");
+            ViewBag.alleFelder = new MultiSelectList(viewModelAvailable, "FeldID", "FeldName");          
         }
 
         private void UpdateDatentypAnwendung(string[] selectedAnwendungen, Datentyp datentypToUpdate)

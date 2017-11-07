@@ -8,11 +8,9 @@ namespace DataDictionary
         // For more information on Bundling, visit http://go.microsoft.com/fwlink/?LinkId=254725
         public static void RegisterBundles(BundleCollection bundles)
         {
-            BundleTable.EnableOptimizations = true;
-
+       
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"
-                        ));
+                        "~/Scripts/jquery-3.1.1.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -23,14 +21,12 @@ namespace DataDictionary
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                         "~/Scripts/bootstrap.js",
-                         "~/Scripts/respond.js"));
+                  "~/Scripts/bootstrap.js",
+                  "~/Scripts/respond.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css"));
-
-            //bundles.Add(new ScriptBundle("~/bundels/multisel").Include(
-            //            "~/Scripts/multiSel.js"));
+            bundles.Add(new ScriptBundle("~/bundles/multiSel_Search").Include(
+                       "~/Scripts/multiSel.js",
+                       "~/Scripts/Search.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/Site.css"));
 
@@ -38,7 +34,6 @@ namespace DataDictionary
                 "~/Content/themes/base/jquery-ui.css",
                 "~/Content/themes/base/jquery-ui.all.css",
                 "~/Content/themes/base/jquery.ui.autocomplete.css",
-
                 "~/Content/themes/base/jquery.ui.core.css",
                 "~/Content/themes/base/jquery.ui.resizable.css",
                 "~/Content/themes/base/jquery.ui.selectable.css",
@@ -51,7 +46,7 @@ namespace DataDictionary
                 "~/Content/themes/base/jquery.ui.datepicker.css",
                 "~/Content/themes/base/jquery.ui.progressbar.css",
                 "~/Content/themes/base/jquery.ui.theme.css"
-                            ));
+                ));
         }
     }
 }

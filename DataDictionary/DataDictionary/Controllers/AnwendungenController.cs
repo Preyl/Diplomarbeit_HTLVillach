@@ -190,8 +190,8 @@ namespace DataDictionary.Controllers
             }
     
                 //ViewBag.Datentyp = viewModel;
-                ViewBag.selOpts  = new MultiSelectList(viewModelSelected, "DatentypID", "DatentypName");
-                ViewBag.availOpts = new MultiSelectList(viewModelAvailable, "DatentypID", "DatentypName");
+                ViewBag.selectedDatentypen  = new MultiSelectList(viewModelSelected, "DatentypID", "DatentypName");
+                ViewBag.alleDatentypen = new MultiSelectList(viewModelAvailable, "DatentypID", "DatentypName");
 
             }
 

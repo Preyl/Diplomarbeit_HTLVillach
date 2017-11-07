@@ -1,15 +1,22 @@
-﻿@model DataDictionary.Models.Datentyp
+﻿
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/multiSel_Search")
+}
+
+@model DataDictionary.Models.Datentyp
 
 @{
     ViewBag.Title = "Edit";
 }
+<link href="~/Content/Editstylesheet.css" rel="stylesheet" />
 
 <h2>@Html.DisplayFor(model => model.Name)</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div>
         <hr />
         @Html.ValidationSummary(true, "")
@@ -32,68 +39,68 @@
         </div>
         <hr />
         <div>
-            <label>Anwendungen</label>
-            <div>
-                <table>
-                    <tr>
-                        @{
-                            int cnt = 0;
-                            List<DataDictionary.ViewModels.Anwendung_Datentyp_VM> anwendungen = ViewBag.Anwendung;
-
-                            foreach (var anwendung in anwendungen)
-                            {
-                                if (cnt++ % 3 == 0)
-                                {
-                                    @: </tr><tr>
-                                }
-                                @:<td>
-                                    <input type="checkbox"
-                                           name="selectedAnwendungen"
-                                           value="@anwendung.AnwendungID"
-                                           @(Html.Raw(anwendung.Assigned ? "checked=\"checked\"" : "")) />
-                                        @anwendung.AnwendungName
-                                        @:</td>
-                            }
-                            @:</tr>
-                        }
-                </table>
+            <div>&nbsp;</div>
+            
+            <div class="box">
+                <label>Meine Anwendungen</label>
+                <input type="text" onkeyup="MyUtil.selectFilter('selectedAnwendungen', this.value)" placeholder="Suchen" /> <br />
+                @Html.ListBox("selectedAnwendungen", (MultiSelectList)ViewBag.selectedAnwendungen, new { @class = "lbjs" })
             </div>
-        </div>
-        <hr />
-        <div>
-            <label>Felder</label>
-            <div>
-                <table>
-                    <tr>
-                        @{
-                            int cnt2 = 0;
-                            List<DataDictionary.ViewModels.Feld_Datentyp_VM> felder = ViewBag.Feld;
-
-                            foreach (var feld in felder)
-                            {
-                                if (cnt2++ % 3 == 0)
-                                {
-                                    @:</tr><tr>
-                                }
-                                @:<td>
-                                    <input type="checkbox"
-                                           name="selectedFelder"
-                                           value="@feld.FeldID"
-                                           @(Html.Raw(feld.Assigned ? "checked=\"checked\"" : "")) />
-                                        @feld.FeldName
-                                        @:</td>
-                            }
-                            @:</tr>
-                        }
-                    </table>
-                @*<p>@Html.RouteLink("Neues Feld erstellen", new { action = "Create", controller = "Felder", Model.Id})</p>*@
-                <input type="button" class="btn btn-info" value="Neues Feld erstellen" onclick="location.href='@Url.Action("Create","Felder",new { Model.Id })'" />
+            <div class="but">
+                <div>
+                    <button type="button" id="btnRightAnwendung">
+                        <span aria-hidden="true">>></span>
+                    </button>
+                </div>
+                <div>
+                    <button type="button" id="btnLeftAnwendung">
+                        <span aria-hidden="true"><<</span>
+                    </button>
+                    <div></div>
                 </div>
             </div>
+            
+            <div class="box">
+                <label>Alle Anwendungen</label>
+                <input type="text" onkeyup="MyUtil.selectFilter('alleAnwendungen', this.value)" placeholder="Suchen" /> <br />
+                @Html.ListBox("alleAnwendungen", (MultiSelectList)ViewBag.alleAnwendungen, new { @class = "lbjs" })
+            </div>
+        </div>
+        <hr class="clear" />
+        <div>
+            <div>&nbsp;</div>
+           
+            <div class="box">
+                <label>Meine Felder</label>
+                <input type="text" onkeyup="MyUtil.selectFilter('selectedFelder', this.value)" placeholder="Suchen" /> <br />
+                @Html.ListBox("selectedFelder", (MultiSelectList)ViewBag.selectedFelder, new { @class = "lbjs" })
+            </div>
+            <div class="but">
+                <div>
+                    <button type="button" id="btnRightFeld">
+                        <span aria-hidden="true">>></span>
+                    </button>
+                </div>
+                <div>
+                    <button type="button" id="btnLeftFeld">
+                        <span aria-hidden="true"><<</span>
+                    </button>
+                    <div></div>
+                </div>
+            </div>        
+                <div class="box">
+                    <label>Alle Felder</label>
+                    <input type="text" onkeyup="MyUtil.selectFilter('alleFelder', this.value)" placeholder="Suchen" /> <br />
+                    @Html.ListBox("alleFelder", (MultiSelectList)ViewBag.alleFelder, new { @class = "lbjs" })
+                </div>
+            </div>
+
+        <input type="button" class="but" value="Neues Feld erstellen" onclick="location.href='@Url.Action("Create","Felder",new { Model.Id })'" />
+
         <div>
             <div>
-                <hr />
-                <input type="submit" value="Speichern"/>
+                <hr class="clear" />
+                <input type="submit" id="btnSubmit" value="Speichern" />
                 @*<input type="button" class="btn btn-info" value="Zurück zur Übersicht" onclick="location.href='@Url.Action("Index")'" />*@
                 <hr />
             </div>
@@ -101,7 +108,4 @@
     </div>
 }
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/multiSel")
-}
+
