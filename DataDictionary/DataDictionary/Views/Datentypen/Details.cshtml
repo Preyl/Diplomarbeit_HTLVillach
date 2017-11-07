@@ -25,7 +25,7 @@
                     PK
                 </th>
                 <th>
-                    Anwendung
+                    Anzahl Anwendungen
                 </th>
             </tr>
 
@@ -64,9 +64,8 @@
                        }
                     </td>
                     <td>
-                        <input type="button" class="btn btn-info" value="Bearbeiten" onclick="location.href='@Url.Action("Edit", "Felder", new {id = item.Id })'" />
+                        <input type="button" class="btn btn-info" value="Bearbeiten" onclick="location.href='@Url.Action("Edit", "Felder", new {id = item.Id})'" />
                     </td>
-
                 </tr>
             }         
         </table>

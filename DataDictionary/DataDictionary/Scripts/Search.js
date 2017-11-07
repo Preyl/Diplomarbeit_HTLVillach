@@ -1,4 +1,5 @@
-﻿////Search für Selected Datentypen
+﻿
+////Search für Selected Datentypen
 
 //searchBoxMeineDatentypen = document.querySelector("#searchBoxMeineDatentypen");
 //searchedMeineDatentypen = document.querySelector("#selectedDatentypen");

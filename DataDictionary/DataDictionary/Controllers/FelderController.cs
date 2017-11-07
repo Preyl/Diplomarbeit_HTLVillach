@@ -84,35 +84,10 @@ namespace DataDictionary.Controllers
             {
                 db.Entry(feld).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Details", "Datentypen", new { Id = id });
+                //return RedirectToAction("Details", "Datentypen", new { Id = id });
+                return RedirectToAction("Index", "Datentypen");
             }
             return View(feld);
-        }
-
-        // GET: Felder/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Feld feld = db.Feld.Find(id);
-            if (feld == null)
-            {
-                return HttpNotFound();
-            }
-            return View(feld);
-        }
-
-        // POST: Felder/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Feld feld = db.Feld.Find(id);
-            db.Feld.Remove(feld);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

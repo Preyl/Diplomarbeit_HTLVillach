@@ -123,32 +123,6 @@ namespace DataDictionary.Controllers
             return View(anwendungToUpdate);
         }
 
-        // GET: Anwendungen/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Anwendung anwendung = db.Anwendung.Find(id);
-            if (anwendung == null)
-            {
-                return HttpNotFound();
-            }
-            return View(anwendung);
-        }
-
-        // POST: Anwendungen/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Anwendung anwendung = db.Anwendung.Find(id);
-            db.Anwendung.Remove(anwendung);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

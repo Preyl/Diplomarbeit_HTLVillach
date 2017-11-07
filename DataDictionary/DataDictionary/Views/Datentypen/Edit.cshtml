@@ -38,6 +38,8 @@
             </div>
         </div>
         <hr />
+        <input type="submit" id="btnSubmit" value="Speichern" />
+        <hr />
         <div>
             <div>&nbsp;</div>
             
@@ -95,14 +97,14 @@
                 </div>
             </div>
 
-        <input type="button" class="but" value="Neues Feld erstellen" onclick="location.href='@Url.Action("Create","Felder",new { Model.Id })'" />
+        <input type="button" class="but" value="Neues Feld erstellen"/>
 
         <div>
             <div>
                 <hr class="clear" />
-                <input type="submit" id="btnSubmit" value="Speichern" />
+
+                @*<input type="submit" id="btnSubmit" value="Speichern" />*@
                 @*<input type="button" class="btn btn-info" value="Zurück zur Übersicht" onclick="location.href='@Url.Action("Index")'" />*@
-                <hr />
             </div>
         </div>
     </div>

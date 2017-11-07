@@ -43,16 +43,20 @@ $("select").mousedown(function (e) {
 }).mousemove(function (e) { e.preventDefault() });
 
 $('#btnRightDatentyp').click(function (e) {
-   
-    var selectedDatentypen = $('#selectedDatentypen option:selected');
-    if (selectedDatentypen.length == 0) {
-        alert("Nothing to move.");
-        e.preventDefault();
-    }
+    var check = confirm('Wollen Sie die ausgewählten Datentypen wirklich entfernen?');
+    if (check == true) {
+        var selectedDatentypen = $('#selectedDatentypen option:selected');
+        if (selectedDatentypen.length == 0) {
+            alert("Nothing to move.");
+            e.preventDefault();
+        }
 
-    $('#alleDatentypen').append($(selectedDatentypen).clone());
-    $(selectedDatentypen).remove();
-    e.preventDefault();
+        $('#alleDatentypen').append($(selectedDatentypen).clone());
+        $(selectedDatentypen).remove();
+        e.preventDefault();
+
+        document.getElementById('btnSubmitDatentyp').click();
+    }
 });
 
 $('#btnLeftDatentyp').click(function (e) {
@@ -65,6 +69,7 @@ $('#btnLeftDatentyp').click(function (e) {
     $('#selectedDatentypen').append($(selectedDatentypen).clone());
     $(selectedDatentypen).remove();
     e.preventDefault();
+    document.getElementById('btnSubmitDatentyp').click();
 });
 
 
@@ -75,15 +80,18 @@ $('#btnSubmitDatentyp').click(function (e) {
 /*******************************************************/
 
 $('#btnRightAnwendung').click(function (e) {
-    var selectedAnwendungen = $('#selectedAnwendungen option:selected');
-    if (selectedAnwendungen.length == 0) {
-        alert("Nothing to move.");
+    var check = confirm('Wollen Sie die ausgewählten Anwendungen wirklich entfernen?');
+    if (check == true) {
+        var selectedAnwendungen = $('#selectedAnwendungen option:selected');
+        if (selectedAnwendungen.length == 0) {
+            alert("Nothing to move.");
+            e.preventDefault();
+        }
+
+        $('#alleAnwendungen').append($(selectedAnwendungen).clone());
+        $(selectedAnwendungen).remove();
         e.preventDefault();
     }
-
-    $('#alleAnwendungen').append($(selectedAnwendungen).clone());
-    $(selectedAnwendungen).remove();
-    e.preventDefault();
 });
 
 $('#btnLeftAnwendung').click(function (e) {
@@ -107,15 +115,18 @@ $('#btnSubmit').click(function (e) {
 /*******************************************************/
 
 $('#btnRightFeld').click(function (e) {
-    var selectedFelder = $('#selectedFelder option:selected');
-    if (selectedFelder.length == 0) {
-        alert("Nothing to move.");
+    var check = confirm('Wollen Sie die ausgewählten Felder wirklich entfernen?');
+    if (check == true) {
+        var selectedFelder = $('#selectedFelder option:selected');
+        if (selectedFelder.length == 0) {
+            alert("Nothing to move.");
+            e.preventDefault();
+        }
+
+        $('#alleFelder').append($(selectedFelder).clone());
+        $(selectedFelder).remove();
         e.preventDefault();
     }
-
-    $('#alleFelder').append($(selectedFelder).clone());
-    $(selectedFelder).remove();
-    e.preventDefault();
 });
 
 $('#btnLeftFeld').click(function (e) {

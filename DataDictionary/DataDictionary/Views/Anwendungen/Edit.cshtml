@@ -48,7 +48,7 @@
             </div>
             <div class="but">
                 <div>
-                    <button type="button" id="btnRightDatentyp">
+                    <button type="button" id="btnRightDatentyp" onclick="warnung()">
                         <span aria-hidden="true">>></span>
                     </button>
                 </div>
@@ -105,9 +105,9 @@
         </div>
         <div>
             <hr />
-            <input type="submit" id="btnSubmitDatentyp" value="Speichern" class="btn btn-default" />
-            <input type="button" class="btn btn-info" value="Zurück zur Übersicht" onclick="location.href='@Url.Action("Index")'" />
-            <input type="button" class="btn btn-info" value="Zurück zu Details" onclick="location.href='@Url.Action("Details", new { id = Model.Id })'" />
+            <input type="submit" id="btnSubmitDatentyp" value="Speichern"/>
+            <input type="button" value="Zurück zur Übersicht" onclick="location.href='@Url.Action("Index")'" />
+            <input type="button" value="Zurück zu Details" onclick="location.href='@Url.Action("Details", new { id = Model.Id })'" />
             <hr />
         </div>
     </div>

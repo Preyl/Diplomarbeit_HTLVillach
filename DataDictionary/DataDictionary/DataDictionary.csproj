@@ -254,13 +254,10 @@
     <Content Include="Scripts\tether.js" />
     <Content Include="Scripts\tether.min.js" />
     <Content Include="Views\Datentypen\Create.cshtml" />
-    <Content Include="Views\Datentypen\Delete.cshtml" />
     <Content Include="Views\Datentypen\Details.cshtml" />
     <Content Include="Views\Datentypen\Edit.cshtml" />
     <Content Include="Views\Datentypen\Index.cshtml" />
     <Content Include="Views\Felder\Create.cshtml" />
-    <Content Include="Views\Felder\Delete.cshtml" />
-    <Content Include="Views\Felder\Details.cshtml" />
     <Content Include="Views\Felder\Edit.cshtml" />
     <Content Include="Views\Felder\Index.cshtml" />
     <Content Include="Web.config" />
@@ -304,7 +301,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Anwendungen\Create.cshtml" />
-    <Content Include="Views\Anwendungen\Delete.cshtml" />
     <Content Include="Views\Anwendungen\Details.cshtml" />
     <Content Include="Views\Anwendungen\Edit.cshtml" />
     <Content Include="Views\Anwendungen\Index.cshtml" />

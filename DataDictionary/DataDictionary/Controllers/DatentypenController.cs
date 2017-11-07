@@ -123,32 +123,6 @@ namespace DataDictionary.Controllers
             return View(datentypToUpdate);
         }
 
-        // GET: Datentypen/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Datentyp datentyp = db.Datentyp.Find(id);
-            if (datentyp == null)
-            {
-                return HttpNotFound();
-            }
-            return View(datentyp);
-        }
-
-        // POST: Datentypen/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Datentyp datentyp = db.Datentyp.Find(id);
-            db.Datentyp.Remove(datentyp);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
