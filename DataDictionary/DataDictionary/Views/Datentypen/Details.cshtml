@@ -51,8 +51,7 @@
                                 if (!alleAnwendungen.Contains(anwendung.Name))
                                 {
                                     alleAnwendungen.Add(anwendung.Name);
-                                }
-
+                                }                        
                             }
                         }
                         foreach (var anwendung in alleAnwendungen)
@@ -61,10 +60,10 @@
                             i++;
                         }
                         @: @i <br />
-                       }
+                    }
                     </td>
                     <td>
-                        <input type="button" class="btn btn-info" value="Bearbeiten" onclick="location.href='@Url.Action("Edit", "Felder", new {id = item.Id})'" />
+                        <input type="button" class="btn btn-info" value="Bearbeiten" onclick="location.href='@Url.Action("Edit", "Felder", new {id = item.Id, did = Model.Id})'" />
                     </td>
                 </tr>
             }         

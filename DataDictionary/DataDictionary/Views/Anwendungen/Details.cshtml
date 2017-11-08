@@ -17,7 +17,7 @@
         @{ 
             foreach (var datentyp in Model.MeineDatentypen)
             {       
-                <h4>@Html.RouteLink(@datentyp.Name, new { action = "Edit", controller = "Datentypen", id = datentyp.Id })<br /></h4>
+                <h4>@Html.RouteLink(@datentyp.Name, new { action = "Details", controller = "Datentypen", id = datentyp.Id })<br /></h4>
                 <ul>
                     @foreach (var feld in datentyp.MeineFelder)
                     {

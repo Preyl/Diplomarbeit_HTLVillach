@@ -78,14 +78,13 @@ namespace DataDictionary.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Sensibel,PK")] Feld feld, int? id)
+        public ActionResult Edit([Bind(Include = "Id,Name,Sensibel,PK")] Feld feld, int? id, int? did)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(feld).State = EntityState.Modified;
                 db.SaveChanges();
-                //return RedirectToAction("Details", "Datentypen", new { Id = id });
-                return RedirectToAction("Index", "Datentypen");
+                return RedirectToAction("Details", "Datentypen", new { Id = did });
             }
             return View(feld);
         }
