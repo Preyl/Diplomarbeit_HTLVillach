@@ -69,8 +69,8 @@ namespace DataDictionary.Controllers
             }
 
             Anwendung anwendung = db.Anwendung
-              .Include(a => a.MeineDatentypen)
-              .Include(p => p.MeineFelder)
+              .Include(a => a.Datentypen)
+              .Include(p => p.Felder)
               .Where(i => i.Id == id)
               .Single();
 
@@ -96,8 +96,8 @@ namespace DataDictionary.Controllers
             }
 
             var anwendungToUpdate = db.Anwendung
-                .Include(a => a.MeineDatentypen)
-                .Include(a => a.MeineFelder)
+                .Include(a => a.Datentypen)
+                .Include(a => a.Felder)
                 .Where(a => a.Id == id)
                 .Single();
 
@@ -135,7 +135,7 @@ namespace DataDictionary.Controllers
         private void PopulateAssignedDatentypData(Anwendung anwendung)
         {
             var alleDatentypen = db.Datentyp;
-            var AnwendungDatentyp = new HashSet<int>(anwendung.MeineDatentypen.Select(d => d.Id));
+            var AnwendungDatentyp = new HashSet<int>(anwendung.Datentypen.Select(d => d.Id));
 
             var viewModelAvailable = new List<Datentyp_Anwendung_VM>();
             var viewModelSelected = new List<Datentyp_Anwendung_VM>();
@@ -172,7 +172,7 @@ namespace DataDictionary.Controllers
         private void PopulateAssignedFeldData(Anwendung anwendung)
         {
             var alleFelder = db.Feld;
-            var DatentypFeld = new HashSet<int>(anwendung.MeineFelder.Select(f => f.Id));
+            var DatentypFeld = new HashSet<int>(anwendung.Felder.Select(f => f.Id));
             var viewModel = new List<Anwendung_Feld_VM>();
             foreach (var feld in alleFelder)
             {
@@ -190,13 +190,13 @@ namespace DataDictionary.Controllers
         {
             if (selectedDatentypen == null)
             {
-                anwendungToUpdate.MeineDatentypen = new List<Datentyp>();
+                anwendungToUpdate.Datentypen = new List<Datentyp>();
                 return;
             }
 
             var selectedDatentypenHS = new HashSet<string>(selectedDatentypen);
             var datentypenAnwendungen = new HashSet<int>
-                (anwendungToUpdate.MeineDatentypen.Select(d => d.Id));
+                (anwendungToUpdate.Datentypen.Select(d => d.Id));
 
             foreach (var datentyp in db.Datentyp)
             {
@@ -204,14 +204,14 @@ namespace DataDictionary.Controllers
                 {
                     if (!datentypenAnwendungen.Contains(datentyp.Id))
                     {
-                        anwendungToUpdate.MeineDatentypen.Add(datentyp);
+                        anwendungToUpdate.Datentypen.Add(datentyp);
                     }
                 }
                 else
                 {
                     if (datentypenAnwendungen.Contains(datentyp.Id))
                     {
-                        anwendungToUpdate.MeineDatentypen.Remove(datentyp);
+                        anwendungToUpdate.Datentypen.Remove(datentyp);
                     }
                 }
             }
@@ -221,13 +221,13 @@ namespace DataDictionary.Controllers
         {
             if (selectedFelder == null)
             {
-                anwendungToUpdate.MeineFelder = new List<Feld>();
+                anwendungToUpdate.Felder = new List<Feld>();
                 return;
             }
 
             var selectedFelderHS = new HashSet<string>(selectedFelder);
             var felderAnwendungen = new HashSet<int>
-                (anwendungToUpdate.MeineFelder.Select(f => f.Id));
+                (anwendungToUpdate.Felder.Select(f => f.Id));
 
             foreach (var feld in db.Feld)
             {
@@ -235,14 +235,14 @@ namespace DataDictionary.Controllers
                 {
                     if (!felderAnwendungen.Contains(feld.Id))
                     {
-                        anwendungToUpdate.MeineFelder.Add(feld);
+                        anwendungToUpdate.Felder.Add(feld);
                     }
                 }
                 else
                 {
                     if (felderAnwendungen.Contains(feld.Id))
                     {
-                        anwendungToUpdate.MeineFelder.Remove(feld);
+                        anwendungToUpdate.Felder.Remove(feld);
                     }
                 }
             }

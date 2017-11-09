@@ -27,13 +27,13 @@ namespace DataDictionary.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Anwendung>()
-                .HasMany(e => e.MeineDatentypen)
-                .WithMany(e => e.MeineAnwendungen)
+                .HasMany(e => e.Datentypen)
+                .WithMany(e => e.Anwendungen)
                 .Map(m => m.ToTable("Anwendung_Datentyp").MapLeftKey("AnwendungId").MapRightKey("DatentypId"));
 
             modelBuilder.Entity<Anwendung>()
-                .HasMany(e => e.MeineFelder)
-                .WithMany(e => e.MeineAnwendungen)
+                .HasMany(e => e.Felder)
+                .WithMany(e => e.Anwendungen)
                 .Map(m => m.ToTable("Anwendung_Feld").MapLeftKey("AnwendungId").MapRightKey("FeldId"));
 
             modelBuilder.Entity<Datentyp>()
@@ -45,8 +45,8 @@ namespace DataDictionary.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Datentyp>()
-                .HasMany(e => e.MeineFelder)
-                .WithMany(e => e.MeineDatentypen)
+                .HasMany(e => e.Felder)
+                .WithMany(e => e.Datentypen)
                 .Map(m => m.ToTable("Datentyp_Feld").MapLeftKey("DatentypId").MapRightKey("FeldId"));
 
             modelBuilder.Entity<Feld>()

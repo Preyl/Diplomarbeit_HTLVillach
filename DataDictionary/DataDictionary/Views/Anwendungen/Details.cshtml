@@ -15,13 +15,13 @@
     <hr />
         <h3>Vorhandene Datentypen:</h3>
         @{ 
-            foreach (var datentyp in Model.MeineDatentypen)
+            foreach (var datentyp in Model.Datentypen)
             {       
                 <h4>@Html.RouteLink(@datentyp.Name, new { action = "Details", controller = "Datentypen", id = datentyp.Id })<br /></h4>
                 <ul>
-                    @foreach (var feld in datentyp.MeineFelder)
+                    @foreach (var feld in datentyp.Felder)
                     {
-                        if (feld.MeineAnwendungen.Contains(Model))
+                        if (feld.Anwendungen.Contains(Model))
                         {
                             <li>
                                 @feld.Name <br />

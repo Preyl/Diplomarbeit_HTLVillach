@@ -73,13 +73,13 @@
                 List<DataDictionary.ViewModels.Anwendung_Feld_VM> felder = ViewBag.Feld;
                 List<int> mFelder = new List<int>();
 
-                foreach (var datentyp in Model.MeineDatentypen)
+                foreach (var datentyp in Model.Datentypen)
                 {
                     <h5>@datentyp.Name</h5>
 
                     @:<ul class="ul">
 
-                    foreach (var feld1 in datentyp.MeineFelder)
+                    foreach (var feld1 in datentyp.Felder)
                     {
                         mFelder.Add(feld1.Id);
                         foreach (var feld in felder)

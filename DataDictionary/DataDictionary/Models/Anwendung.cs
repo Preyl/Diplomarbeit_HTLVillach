@@ -12,8 +12,8 @@ namespace DataDictionary.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Anwendung()
         {
-            MeineDatentypen = new HashSet<Datentyp>();
-            MeineFelder = new HashSet<Feld>();
+            Datentypen = new HashSet<Datentyp>();
+            Felder = new HashSet<Feld>();
         }
 
         public int Id { get; set; }
@@ -27,9 +27,9 @@ namespace DataDictionary.Models
         public string Beschreibung { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Datentyp> MeineDatentypen { get; set; }
+        public virtual ICollection<Datentyp> Datentypen { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Feld> MeineFelder { get; set; }
+        public virtual ICollection<Feld> Felder { get; set; }
     }
 }
