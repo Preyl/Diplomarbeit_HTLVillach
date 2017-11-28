@@ -261,6 +261,7 @@
     <Content Include="Views\Felder\Edit.cshtml" />
     <Content Include="Views\Felder\Index.cshtml" />
     <Content Include="Web.config" />
+    <Content Include="Views\Felder\FelderErmitteln.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

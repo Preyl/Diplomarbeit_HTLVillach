@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DataDictionary.Models;
+using System.Data.SqlClient;
 
 namespace DataDictionary.Controllers
 {
@@ -40,6 +41,7 @@ namespace DataDictionary.Controllers
         {
             return View();
         }
+
 
         // POST: Felder/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -87,6 +89,32 @@ namespace DataDictionary.Controllers
                 return RedirectToAction("Details", "Datentypen", new { Id = did });
             }
             return View(feld);
+        }
+
+        // GET: Felder/FelderErmitteln
+        public ActionResult FelderErmitteln()
+        {
+            return View();
+        }
+
+        // POST: Felder/FelderErmitteln/name
+        public ActionResult FelderErmitteln([Bind(Include ="Name")] Feld feld)
+        {
+            //DataTable t = .GetSchema("Tables");
+            return View();
+        }
+        public IList<string> ListTables()
+        {
+            SqlConnection _connection = new SqlConnection();
+
+            List<string> tables = new List<string>();
+            DataTable dt = _connection.GetSchema("Tables");
+            foreach (DataRow row in dt.Rows)
+            {
+                string tablename = (string)row[2];
+                tables.Add(tablename);
+            }
+            return tables;
         }
 
         protected override void Dispose(bool disposing)
