@@ -32,7 +32,7 @@
     <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>0</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -261,7 +261,9 @@
     <Content Include="Views\Felder\Edit.cshtml" />
     <Content Include="Views\Felder\Index.cshtml" />
     <Content Include="Web.config" />
-    <Content Include="Views\Felder\FelderErmitteln.cshtml" />
+    <Content Include="Views\FelderErmitteln\Index.cshtml" />
+    <Content Include="Views\FelderErmitteln\Details.cshtml" />
+    <Content Include="Views\FelderErmitteln\Infos.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -275,16 +277,20 @@
     <Compile Include="Controllers\AnwendungenController.cs" />
     <Compile Include="Controllers\DatentypenController.cs" />
     <Compile Include="Controllers\FelderController.cs" />
+    <Compile Include="Controllers\FelderErmittelnController.cs" />
+    <Compile Include="Models\Anwendung.cs" />
+    <Compile Include="Models\Database.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Anwendung.cs" />
+    <Compile Include="Models\Datenbank.cs" />
     <Compile Include="Models\Datentyp.cs" />
     <Compile Include="Models\EntityDataModel.cs" />
     <Compile Include="Models\Feld.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Anwendung_Datentyp_VM.cs" />
     <Compile Include="ViewModels\Anwendung_Feld_VM.cs" />
+    <Compile Include="ViewModels\DatenbankVM.cs" />
     <Compile Include="ViewModels\Datentyp_Anwendung_VM.cs" />
     <Compile Include="ViewModels\Feld_Datentyp_VM.cs" />
   </ItemGroup>
@@ -308,6 +314,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

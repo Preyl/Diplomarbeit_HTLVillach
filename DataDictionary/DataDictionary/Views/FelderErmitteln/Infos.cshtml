@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "Felder ermitteln";
+}
+
+@model DataDictionary.Models.Datenbank
+
+<h2>Felder ermitteln</h2>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+
+
+    @Html.AntiForgeryToken()
+
+    <div>
+        <hr />
+        <div>
+            <div>
+            @{
+                DataDictionary.Models.Datenbank db = new DataDictionary.Models.Datenbank();
+                string connectionstring = "Server=";
+                connectionstring += Request.QueryString["connectionString"];
+                connectionstring += ";Database=";
+                connectionstring += Request.QueryString["database"];
+                db.ConnectionString = connectionstring;
+
+                List<string> tables = db.ListTables();
+
+                foreach (var item in tables)
+                {
+                    @:<label><input type="checkbox" id="table" /> @item.ToString()</label>
+
+                    @:<table>
+                    List<string> columns = db.ListColumn(item);
+
+                    foreach (var item2 in columns)
+                    {
+
+                        @:<tr>
+
+                        List<string> data = db.ListData(item, item2);
+                        int i = 0;
+                        foreach (var item3 in data)
+                        {
+                            if (i == 0)
+                            {
+                                <td style="font-style:italic">@item2.ToString()</td>
+                            }
+                            <td>@item3.ToString()</td>
+                            i++;
+                        }
+                        @:</tr>
+                    }
+                    @:</table>
+
+                    }
+
+            }
+            </div>
+        </div>
+        <hr />
+        <div>
+            <div>
+                <input type="submit" value="DB befüllen" />
+            </div>
+        </div>
+    </div>
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

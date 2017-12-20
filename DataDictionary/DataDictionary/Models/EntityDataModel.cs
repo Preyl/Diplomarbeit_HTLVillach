@@ -53,5 +53,6 @@ namespace DataDictionary.Models
                 .Property(e => e.Name)
                 .IsUnicode(false);
         }
+
     }
 }

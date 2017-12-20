@@ -1,0 +1,46 @@
+CREATE TABLE [dbo].[Anwendung] (
+    [Id]           INT          IDENTITY (1, 1) NOT NULL,
+    [Name]         VARCHAR (50) NOT NULL,
+    [Beschreibung] VARCHAR (50) NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+CREATE TABLE [dbo].[Datentyp] (
+    [Id]           INT          IDENTITY (1, 1) NOT NULL,
+    [Name]         VARCHAR (50) NOT NULL,
+    [Beschreibung] VARCHAR (50) NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+CREATE TABLE [dbo].[Feld] (
+    [Id]       INT          IDENTITY (1, 1) NOT NULL,
+    [Name]     VARCHAR (50) NOT NULL,
+    [Sensibel] BIT          NOT NULL,
+    [PK]       BIT          NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+CREATE TABLE [dbo].[Anwendung_Datentyp] (
+    [AnwendungId] INT NOT NULL,
+    [DatentypId]  INT NOT NULL,
+    CONSTRAINT [PK_Anwendung_Datentyp] PRIMARY KEY CLUSTERED ([AnwendungId] ASC, [DatentypId] ASC),
+    CONSTRAINT [FK_Anwendung_Datentyp_Anwendung] FOREIGN KEY ([AnwendungId]) REFERENCES [dbo].[Anwendung] ([Id]),
+    CONSTRAINT [FK_Anwendung_Datentyp_Datentyp] FOREIGN KEY ([DatentypId]) REFERENCES [dbo].[Datentyp] ([Id])
+);
+
+CREATE TABLE [dbo].[Anwendung_Feld] (
+    [AnwendungId] INT NOT NULL,
+    [FeldId]      INT NOT NULL,
+    CONSTRAINT [PK_Anwendung_Feld] PRIMARY KEY CLUSTERED ([AnwendungId] ASC, [FeldId] ASC),
+    CONSTRAINT [FK_Anwendung_Feld_Anwendung] FOREIGN KEY ([AnwendungId]) REFERENCES [dbo].[Anwendung] ([Id]),
+    CONSTRAINT [FK_Anwendung_Feld_Feld] FOREIGN KEY ([FeldId]) REFERENCES [dbo].[Feld] ([Id])
+);
+
+CREATE TABLE [dbo].[Datentyp_Feld] (
+    [DatentypId] INT NOT NULL,
+    [FeldId]     INT NOT NULL,
+    CONSTRAINT [PK_Datentyp_Feld] PRIMARY KEY CLUSTERED ([DatentypId] ASC, [FeldId] ASC),
+    CONSTRAINT [FK_Datentyp_Feld_Datentyp] FOREIGN KEY ([DatentypId]) REFERENCES [dbo].[Datentyp] ([Id]),
+    CONSTRAINT [FK_Datentyp_Feld_Feld] FOREIGN KEY ([FeldId]) REFERENCES [dbo].[Feld] ([Id])
+);
+

@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Felder ermitteln";
+}
+
+<h2>Felder ermitteln</h2>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <hr />
+    
+    <div>
+        <div>
+            <form id="myForm" action="./FelderErmitteln/Infos">
+                Server: <input type="text" value="(localdb)\MSSQLLocalDB" name="connectionString"><br>
+                Database: <input type="text" value="Diplomarbeit" name="database"><br>
+                <input type="submit" value="Connect">
+            </form>  
+        </div>
+    </div>
+</body>
+

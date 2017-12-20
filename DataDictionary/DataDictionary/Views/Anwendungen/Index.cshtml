@@ -36,7 +36,7 @@
         </td>
         <td>
            @* @Html.ActionLink("Details", "Details", new { id=item.Id })*@
-            <input type="button" class="btn btn-info" value="Details" onclick="location.href='@Url.Action("Details", new { id = item.Id })'" />
+            <input type="button" value="Details" onclick="location.href='@Url.Action("Details", new { id = item.Id })'" />
         </td>
     </tr>
 }

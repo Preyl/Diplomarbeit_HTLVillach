@@ -44,8 +44,6 @@ namespace DataDictionary.Controllers
 
 
         // POST: Felder/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,Sensibel,PK")] Feld feld, int? id)
@@ -76,8 +74,6 @@ namespace DataDictionary.Controllers
         }
 
         // POST: Felder/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,Sensibel,PK")] Feld feld, int? id, int? did)
@@ -89,32 +85,6 @@ namespace DataDictionary.Controllers
                 return RedirectToAction("Details", "Datentypen", new { Id = did });
             }
             return View(feld);
-        }
-
-        // GET: Felder/FelderErmitteln
-        public ActionResult FelderErmitteln()
-        {
-            return View();
-        }
-
-        // POST: Felder/FelderErmitteln/name
-        public ActionResult FelderErmitteln([Bind(Include ="Name")] Feld feld)
-        {
-            //DataTable t = .GetSchema("Tables");
-            return View();
-        }
-        public IList<string> ListTables()
-        {
-            SqlConnection _connection = new SqlConnection();
-
-            List<string> tables = new List<string>();
-            DataTable dt = _connection.GetSchema("Tables");
-            foreach (DataRow row in dt.Rows)
-            {
-                string tablename = (string)row[2];
-                tables.Add(tablename);
-            }
-            return tables;
         }
 
         protected override void Dispose(bool disposing)
